@@ -40,7 +40,7 @@ public class Vuelo {
     @Column(name = "descripcion", length = 500)
     private String descripcion;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "aerolinea_idaerolinea", nullable = false)
     private Aerolinea aerolineaIdaerolinea;
 
