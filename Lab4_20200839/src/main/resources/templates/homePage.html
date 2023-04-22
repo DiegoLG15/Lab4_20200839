@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
@@ -74,47 +74,43 @@
     </div>
 
     <div class="row">
-    <!--  <div class="col-sm-6 mt-2 ml-2 mb-4">
+      <div class="col-sm-6 mt-2 ml-2 mb-4">
+          <div class="card text-center border-white">
+            <div class="card-body" th:each="vuelo, vestado: ${listVuelo}" th:if="${vestado.index % 2 == 0}">
+              <h5 th:text="${vuelo.origen + ' - ' + vuelo.destino}" class="card-title mt-3"><span class="text-danger"><b th:text="|(${vuelo.precio})|"></b></span></h5>
+              <p class="text-success"><b th:text="${vuelo.aerolineaIdaerolinea.nombre + ' - ' + vuelo.aerolineaIdaerolinea.codigo}"></b> </p>
+              <p th:text="${vuelo.descripcion}"></p>
+              <button class="btn btn-success btn-lg btn-block" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Comprar</button>
+            </div>
+          </div>
+      </div>
+      <div class="col-sm-6 mt-2 ml-2 mb-4">
         <div class="card text-center border-white">
-          <div class="card-body">
-            <h5 class="card-title mt-3">Lima - Bogota <span class="text-danger"><b>($120.00)</b></span></h5>
-            <p class="text-success"><b>Star Peru - 2I</b> </p>
-            <p>Definitivamente el turismo en Bogotá en más que Monserrate y la Candelaria, hay muchas excursiones por
-              senderos
-              mágicos que puedes realizar. Estas actividades también se conocen como: senderismo, excursionismo,
-              caminata, montañismo,
-              hiking o trekking.</p>
-            <button class="btn btn-success btn-lg btn-block">Comprar</button>
+          <div class="card-body" th:each="vuelo, vestado: ${listVuelo}" th:if="${vestado.index % 2 == 1}">
+            <h5 th:text="${vuelo.origen + ' - ' + vuelo.destino}" class="card-title mt-3"><span class="text-danger"><b th:text="|(${vuelo.precio})|"></b></span></h5>
+            <p class="text-success"><b th:text="${vuelo.aerolineaIdaerolinea.nombre + ' - ' + vuelo.aerolineaIdaerolinea.codigo}"></b> </p>
+            <p th:text="${vuelo.descripcion}"></p>
+            <button class="btn btn-success btn-lg btn-block" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Comprar</button>
           </div>
         </div>
-      </div>-->
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>pais de origen</th>
-            <th>pais de destino</th>
-            <th>Aerolinea</th>
-            <th>Descripcion</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr th:each="vuelo, vestado: ${listVuelo}">
-            <!-- Completar -->
-            <!-- Completar -->
-            <!-- Completar -->
-            <!-- Completar -->
-            <td th:text="${vestado.index+1}"></td>
-            <td th:text="${vuelo.origen}"></td>
-            <td th:text="${vuelo.destino}"></td>
-            <td th:text="${vuelo.aerolineaIdaerolinea.nombre}"></td>
-            <td th:text="${vuelo.descripcion}"></td>
-            <td><a class="btn btn-primary">Comprar</a></td>
-          </tr>
-        </tbody>
-      </table>
+      </div>
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Felicidades</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p style="color: darkgreen">Se realizó con éxito su compra.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">Entendido</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
   </div>
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
