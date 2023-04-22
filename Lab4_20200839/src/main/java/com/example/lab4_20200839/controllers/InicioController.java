@@ -5,6 +5,7 @@ import com.example.lab4_20200839.repository.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -18,15 +19,19 @@ public class InicioController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping("hola")
+    @GetMapping("/login")
     public String inicio(){
         return "inicio";
     }
-    @GetMapping(value = {"inicio","/"})
+    @PostMapping(value = {"/login/inicioSesion"})
     public String iniciousuario(Model model, @RequestParam("correo") String correo, @RequestParam("contrasena") String contrasena) {
 
-        List<User> optUser = userRepository.actualizarHabitacion(correo,contrasena);
-        return "homePage";
+        Optional<User> optUser = Optional.ofNullable(userRepository.actualizarHabitacion(correo, contrasena));
+        if (optUser.isPresent()) {
+            return "redirect:/homePage";
+        } else {
+            return "redirect:/login";
+        }
     }
 
 

@@ -67,14 +67,14 @@
       <div class="card-body">
         <div class="row">
           <div class="col-2"></div>
-          <div class="col-8"><img class="img-fluid" src="tokio.jpeg" alt=""></div>
+          <div class="col-8"><img alt="" class="img-fluid" th:src="@{/tokio.jpeg}"></div>
           <div class="col-2"></div>
         </div>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-sm-6 mt-2 ml-2 mb-4">
+    <!--  <div class="col-sm-6 mt-2 ml-2 mb-4">
         <div class="card text-center border-white">
           <div class="card-body">
             <h5 class="card-title mt-3">Lima - Bogota <span class="text-danger"><b>($120.00)</b></span></h5>
@@ -87,7 +87,32 @@
             <button class="btn btn-success btn-lg btn-block">Comprar</button>
           </div>
         </div>
-      </div>
+      </div>-->
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>pais de origen</th>
+            <th>pais de destino</th>
+            <th>Aerolinea</th>
+            <th>Descripcion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="vuelo, vestado: ${listVuelo}">
+            <!-- Completar -->
+            <!-- Completar -->
+            <!-- Completar -->
+            <!-- Completar -->
+            <td th:text="${vestado.index+1}"></td>
+            <td th:text="${vuelo.origen}"></td>
+            <td th:text="${vuelo.destino}"></td>
+            <td th:text="${vuelo.aerolineaIdaerolinea.nombre}"></td>
+            <td th:text="${vuelo.descripcion}"></td>
+            <td><a class="btn btn-primary">Comprar</a></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
   </div>

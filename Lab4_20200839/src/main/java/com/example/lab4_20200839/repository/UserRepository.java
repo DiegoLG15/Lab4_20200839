@@ -13,8 +13,7 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-    @Modifying
-    @Transactional
-    @Query(nativeQuery = true, value = "SELECT * FROM pasajes.user where email = ?1 and password = ?2;")
-    List<User> actualizarHabitacion(String email, String password);
+
+    @Query(nativeQuery = true, value = "SELECT * FROM user where email = ?1 and password = ?2")
+    User actualizarHabitacion(String email, String password);
 }
